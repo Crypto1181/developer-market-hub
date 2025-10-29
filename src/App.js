@@ -20,7 +20,7 @@ import './App.css';
 // Create a modern theme instance with enhanced colors
 const theme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
     primary: {
       main: '#2196f3',
       light: '#64b5f6',
@@ -54,12 +54,12 @@ const theme = createTheme({
       dark: '#1976d2',
     },
     background: {
-      default: '#1a1a1a',
-      paper: '#242424',
+      default: '#f5f5f5',
+      paper: '#ffffff',
     },
     text: {
-      primary: '#ffffff',
-      secondary: '#b0b0b0',
+      primary: '#1a1a1a',
+      secondary: '#666666',
     },
   },
   typography: {
