@@ -383,7 +383,8 @@ const Login = () => {
                                         variant="outlined" 
                                         fullWidth
                                         onClick={() => {
-                                            window.location.href = 'https://developer-market-backend.onrender.com/api/connect/google';
+                                            const redirectUrl = encodeURIComponent('https://developer-market-hub.vercel.app/auth/google/callback');
+                                            window.location.href = `https://developer-market-backend.onrender.com/api/connect/google?redirect=${redirectUrl}`;
                                         }}
                                         startIcon={
                                             <svg width="18" height="18" viewBox="0 0 18 18">
