@@ -30,6 +30,9 @@ import {
     Logout,
     Dashboard,
     Info,
+    Code,
+    Work,
+    ContactMail,
 } from '@mui/icons-material';
 import { CartContext } from '../context/CartContext';
 import { AuthContext } from '../context/AuthContext';
@@ -80,6 +83,25 @@ const Navbar = () => {
             </Box>
             <Divider />
             <List>
+                {/* Navigation Links */}
+                <ListItem button onClick={() => { navigate('/'); handleDrawerToggle(); }}>
+                    <ListItemIcon><Home sx={{ color: '#000' }} /></ListItemIcon>
+                    <ListItemText primary="Home" primaryTypographyProps={{ color: '#000' }} />
+                </ListItem>
+                <ListItem button onClick={() => { navigate('/source-code'); handleDrawerToggle(); }}>
+                    <ListItemIcon><Code sx={{ color: '#000' }} /></ListItemIcon>
+                    <ListItemText primary="Source Code" primaryTypographyProps={{ color: '#000' }} />
+                </ListItem>
+                <ListItem button onClick={() => { navigate('/portfolio'); handleDrawerToggle(); }}>
+                    <ListItemIcon><Work sx={{ color: '#000' }} /></ListItemIcon>
+                    <ListItemText primary="Portfolio" primaryTypographyProps={{ color: '#000' }} />
+                </ListItem>
+                <ListItem button onClick={() => { navigate('/contact'); handleDrawerToggle(); }}>
+                    <ListItemIcon><ContactMail sx={{ color: '#000' }} /></ListItemIcon>
+                    <ListItemText primary="Contact Us" primaryTypographyProps={{ color: '#000' }} />
+                </ListItem>
+                <Divider sx={{ my: 1 }} />
+                
                 {isAuthenticated ? (
                     <>
                         <ListItem>
@@ -97,10 +119,6 @@ const Navbar = () => {
                             />
                         </ListItem>
                         <Divider sx={{ my: 1 }} />
-                        <ListItem button onClick={() => { navigate('/'); handleDrawerToggle(); }}>
-                            <ListItemIcon><Home sx={{ color: '#000' }} /></ListItemIcon>
-                            <ListItemText primary="Home" primaryTypographyProps={{ color: '#000' }} />
-                        </ListItem>
                         <ListItem button onClick={() => { navigate('/cart'); handleDrawerToggle(); }}>
                             <ListItemIcon>
                                 <Badge badgeContent={cartCount} color="error">
