@@ -92,37 +92,38 @@ const Navbar = () => {
                             <ListItemText 
                                 primary={user?.username || user?.email?.split('@')[0]}
                                 secondary={user?.email}
-                                primaryTypographyProps={{ fontWeight: 600 }}
+                                primaryTypographyProps={{ fontWeight: 600, color: '#000' }}
+                                secondaryTypographyProps={{ color: '#666' }}
                             />
                         </ListItem>
                         <Divider sx={{ my: 1 }} />
                         <ListItem button onClick={() => { navigate('/'); handleDrawerToggle(); }}>
-                            <ListItemIcon><Home /></ListItemIcon>
-                            <ListItemText primary="Home" />
+                            <ListItemIcon><Home sx={{ color: '#000' }} /></ListItemIcon>
+                            <ListItemText primary="Home" primaryTypographyProps={{ color: '#000' }} />
                         </ListItem>
                         <ListItem button onClick={() => { navigate('/cart'); handleDrawerToggle(); }}>
                             <ListItemIcon>
                                 <Badge badgeContent={cartCount} color="error">
-                                    <ShoppingCart />
+                                    <ShoppingCart sx={{ color: '#000' }} />
                                 </Badge>
                             </ListItemIcon>
-                            <ListItemText primary="Cart" />
+                            <ListItemText primary="Cart" primaryTypographyProps={{ color: '#000' }} />
                         </ListItem>
                         <Divider sx={{ my: 1 }} />
                         <ListItem button onClick={() => { handleLogout(); handleDrawerToggle(); }}>
-                            <ListItemIcon><Logout /></ListItemIcon>
-                            <ListItemText primary="Logout" />
+                            <ListItemIcon><Logout sx={{ color: '#000' }} /></ListItemIcon>
+                            <ListItemText primary="Logout" primaryTypographyProps={{ color: '#000' }} />
                         </ListItem>
                     </>
                 ) : (
                     <>
                         <ListItem button onClick={() => { navigate('/login'); handleDrawerToggle(); }}>
-                            <ListItemIcon><Person /></ListItemIcon>
-                            <ListItemText primary="Login" />
+                            <ListItemIcon><Person sx={{ color: '#000' }} /></ListItemIcon>
+                            <ListItemText primary="Login" primaryTypographyProps={{ color: '#000' }} />
                         </ListItem>
                         <ListItem button onClick={() => { navigate('/signup'); handleDrawerToggle(); }}>
-                            <ListItemIcon><Dashboard /></ListItemIcon>
-                            <ListItemText primary="Sign Up" />
+                            <ListItemIcon><Dashboard sx={{ color: '#000' }} /></ListItemIcon>
+                            <ListItemText primary="Sign Up" primaryTypographyProps={{ color: '#000' }} />
                 </ListItem>
                     </>
                 )}
@@ -329,25 +330,25 @@ const Navbar = () => {
                                                 }}
                                             >
                                                 <Box sx={{ px: 2, py: 1.5 }}>
-                                                    <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
+                                                    <Typography variant="subtitle2" sx={{ fontWeight: 600, color: '#000' }}>
                                                         {user?.username || user?.email?.split('@')[0]}
                                                     </Typography>
-                                                    <Typography variant="caption" color="text.secondary">
+                                                    <Typography variant="caption" sx={{ color: '#666' }}>
                                                         {user?.email}
                                                     </Typography>
                                                 </Box>
                                                 <Divider />
-                                                <MenuItem onClick={() => { navigate('/'); handleUserMenuClose(); }}>
-                                                    <Home fontSize="small" sx={{ mr: 1.5 }} />
+                                                <MenuItem onClick={() => { navigate('/'); handleUserMenuClose(); }} sx={{ color: '#000' }}>
+                                                    <Home fontSize="small" sx={{ mr: 1.5, color: '#000' }} />
                                                     Home
                                                 </MenuItem>
-                                                <MenuItem onClick={() => { navigate('/about'); handleUserMenuClose(); }}>
-                                                    <Info fontSize="small" sx={{ mr: 1.5 }} />
+                                                <MenuItem onClick={() => { navigate('/about'); handleUserMenuClose(); }} sx={{ color: '#000' }}>
+                                                    <Info fontSize="small" sx={{ mr: 1.5, color: '#000' }} />
                                                     About Us
                                                 </MenuItem>
                                                 <Divider />
-                                                <MenuItem onClick={handleLogout}>
-                                                    <Logout fontSize="small" sx={{ mr: 1.5 }} />
+                                                <MenuItem onClick={handleLogout} sx={{ color: '#000' }}>
+                                                    <Logout fontSize="small" sx={{ mr: 1.5, color: '#000' }} />
                                                     Logout
                                                 </MenuItem>
                                             </Menu>
