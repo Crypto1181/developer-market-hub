@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:1337/api';
+const API_URL = 'https://developer-market-backend.onrender.com/api';
 
 // Create axios instance
 const api = axios.create({
@@ -134,7 +134,7 @@ export const getImageUrl = (image) => {
         // If URL starts with '/', prepend Strapi base URL
         return imageData.url.startsWith('http') 
             ? imageData.url 
-            : `http://localhost:1337${imageData.url}`;
+            : `https://developer-market-backend.onrender.com${imageData.url}`;
     }
     
     return 'https://via.placeholder.com/400x300?text=No+Image';
@@ -152,7 +152,7 @@ export const getAllImageUrls = (images) => {
         if (img?.url) {
             return img.url.startsWith('http') 
                 ? img.url 
-                : `http://localhost:1337${img.url}`;
+                : `https://developer-market-backend.onrender.com${img.url}`;
         }
         return null;
     }).filter(Boolean); // Remove null values
