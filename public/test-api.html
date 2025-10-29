@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { color: #4caf50; font-weight: bold; }
+        .error { color: #f44336; font-weight: bold; }
+        button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #1976d2;
+        }
+        pre {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 API Connection Test</h1>
+    
+    <div class="test-box">
+        <h2>Test Strapi Connection</h2>
+        <button onclick="testAPI()">Test API Connection</button>
+        <div id="result" style="margin-top: 20px;"></div>
+    </div>
+
+    <div class="test-box">
+        <h2>Products Data</h2>
+        <div id="products"></div>
+    </div>
+
+    <script>
+        async function testAPI() {
+            const resultDiv = document.getElementById('result');
+            const productsDiv = document.getElementById('products');
+            
+            resultDiv.innerHTML = '<p>Testing connection to Strapi...</p>';
+            
+            try {
+                const response = await fetch('http://localhost:1337/api/products');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                resultDiv.innerHTML = `
+                    <p class="success">✅ SUCCESS! Connected to Strapi</p>
+                    <p>Found ${data.data.length} products</p>
+                `;
+                
+                // Display products
+                let productsHTML = '<h3>Products:</h3>';
+                data.data.forEach(product => {
+                    productsHTML += `
+                        <div style="border: 1px solid #ddd; padding: 10px; margin: 10px 0; border-radius: 4px;">
+                            <h4>${product.Ttile || product.Title}</h4>
+                            <p><strong>Price:</strong> $${product.Price}</p>
+                            <p><strong>Rating:</strong> ${product.Rating} stars</p>
+                            <p><strong>Category:</strong> ${product.Category}</p>
+                            <p>${product.Subtitle}</p>
+                        </div>
+                    `;
+                });
+                productsDiv.innerHTML = productsHTML;
+                
+                // Show raw data
+                const rawData = document.createElement('details');
+                rawData.innerHTML = `
+                    <summary style="cursor: pointer; margin-top: 20px;">Show Raw JSON Data</summary>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+                productsDiv.appendChild(rawData);
+                
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <p class="error">❌ ERROR: ${error.message}</p>
+                    <p>Possible issues:</p>
+                    <ul>
+                        <li>Strapi is not running on http://localhost:1337</li>
+                        <li>CORS is blocking the request</li>
+                        <li>Public permissions not enabled</li>
+                    </ul>
+                `;
+                productsDiv.innerHTML = '<p class="error">Could not load products</p>';
+            }
+        }
+        
+        // Auto-test on page load
+        window.onload = () => {
+            testAPI();
+        };
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authentication Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { color: #4caf50; font-weight: bold; }
+        .error { color: #f44336; font-weight: bold; }
+        button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+        button:hover { background: #1976d2; }
+        input {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        pre {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .status.success { background: #e8f5e9; }
+        .status.error { background: #ffebee; }
+    </style>
+</head>
+<body>
+    <h1>🔐 Strapi Authentication & API Test</h1>
+
+    <div class="test-box">
+        <h2>1. Test Server Connection</h2>
+        <button onclick="testConnection()">Test Strapi Server</button>
+        <div id="connection-result"></div>
+    </div>
+
+    <div class="test-box">
+        <h2>2. Test Registration</h2>
+        <div>
+            <input type="email" id="reg-email" placeholder="Email" value="test@example.com">
+            <input type="password" id="reg-password" placeholder="Password" value="password123">
+        </div>
+        <button onclick="testRegister()">Register New User</button>
+        <div id="register-result"></div>
+    </div>
+
+    <div class="test-box">
+        <h2>3. Test Login</h2>
+        <div>
+            <input type="email" id="login-email" placeholder="Email" value="test@example.com">
+            <input type="password" id="login-password" placeholder="Password" value="password123">
+        </div>
+        <button onclick="testLogin()">Login</button>
+        <div id="login-result"></div>
+    </div>
+
+    <div class="test-box">
+        <h2>4. Test Products API</h2>
+        <button onclick="testProducts()">Fetch Products</button>
+        <div id="products-result"></div>
+    </div>
+
+    <div class="test-box">
+        <h2>Current Status</h2>
+        <div id="status">
+            <p>Token: <span id="token-status">Not set</span></p>
+            <p>User: <span id="user-status">Not logged in</span></p>
+        </div>
+        <button onclick="clearAuth()">Clear Auth Data</button>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:1337/api';
+
+        function updateStatus() {
+            const token = localStorage.getItem('token');
+            const user = localStorage.getItem('user');
+            
+            document.getElementById('token-status').textContent = token ? 'Set ✅' : 'Not set ❌';
+            document.getElementById('user-status').textContent = user ? JSON.parse(user).email : 'Not logged in ❌';
+        }
+
+        async function testConnection() {
+            const resultDiv = document.getElementById('connection-result');
+            resultDiv.innerHTML = '<p>Testing...</p>';
+            
+            try {
+                const response = await fetch('http://localhost:1337/_health');
+                if (response.ok) {
+                    resultDiv.innerHTML = '<div class="status success">✅ Strapi server is running!</div>';
+                } else {
+                    throw new Error('Server responded with error');
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="status error">❌ Cannot connect to Strapi<br>Error: ${error.message}</div>`;
+            }
+        }
+
+        async function testRegister() {
+            const resultDiv = document.getElementById('register-result');
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+            const username = email.split('@')[0];
+
+            resultDiv.innerHTML = '<p>Registering...</p>';
+
+            try {
+                const response = await fetch(`${API_URL}/auth/local/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username,
+                        email,
+                        password,
+                    }),
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error?.message || JSON.stringify(data));
+                }
+
+                localStorage.setItem('token', data.jwt);
+                localStorage.setItem('user', JSON.stringify(data.user));
+                updateStatus();
+
+                resultDiv.innerHTML = `
+                    <div class="status success">
+                        ✅ Registration successful!<br>
+                        User: ${data.user.email}<br>
+                        ID: ${data.user.id}
+                    </div>
+                    <details>
+                        <summary>Show Response</summary>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    </details>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ Registration failed<br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        async function testLogin() {
+            const resultDiv = document.getElementById('login-result');
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            resultDiv.innerHTML = '<p>Logging in...</p>';
+
+            try {
+                const response = await fetch(`${API_URL}/auth/local`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        identifier: email,
+                        password,
+                    }),
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error?.message || JSON.stringify(data));
+                }
+
+                localStorage.setItem('token', data.jwt);
+                localStorage.setItem('user', JSON.stringify(data.user));
+                updateStatus();
+
+                resultDiv.innerHTML = `
+                    <div class="status success">
+                        ✅ Login successful!<br>
+                        User: ${data.user.email}<br>
+                        ID: ${data.user.id}
+                    </div>
+                    <details>
+                        <summary>Show Response</summary>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    </details>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ Login failed<br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        async function testProducts() {
+            const resultDiv = document.getElementById('products-result');
+            resultDiv.innerHTML = '<p>Fetching products...</p>';
+
+            try {
+                const response = await fetch(`${API_URL}/products`);
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error?.message || JSON.stringify(data));
+                }
+
+                let productsHTML = `<div class="status success">✅ Found ${data.data.length} products</div>`;
+                
+                data.data.forEach(product => {
+                    productsHTML += `
+                        <div style="border: 1px solid #ddd; padding: 10px; margin: 10px 0; border-radius: 4px;">
+                            <h4>${product.Ttile || product.Title}</h4>
+                            <p><strong>Price:</strong> $${product.Price}</p>
+                            <p><strong>Rating:</strong> ${product.Rating} stars</p>
+                            <p><strong>Category:</strong> ${product.Category}</p>
+                        </div>
+                    `;
+                });
+
+                productsHTML += `
+                    <details>
+                        <summary>Show Raw JSON</summary>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    </details>
+                `;
+
+                resultDiv.innerHTML = productsHTML;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ Failed to fetch products<br>
+                        Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        function clearAuth() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            updateStatus();
+            alert('Authentication data cleared!');
+        }
+
+        // Auto-update status on load
+        window.onload = () => {
+            updateStatus();
+            testConnection();
+        };
+    </script>
+</body>
+</html>
+
