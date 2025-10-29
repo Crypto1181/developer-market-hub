@@ -64,7 +64,7 @@ const Navbar = () => {
 
     // Mobile drawer
     const drawer = (
-        <Box sx={{ width: 280, pt: 2 }}>
+        <Box sx={{ width: 280, pt: 2, bgcolor: '#ffffff' }}>
             <Box sx={{ px: 3, pb: 2 }}>
                 <Typography
                     variant="h6"
@@ -409,6 +409,12 @@ const Navbar = () => {
                 onClose={handleDrawerToggle}
                 ModalProps={{
                     keepMounted: true,
+                }}
+                PaperProps={{
+                    sx: {
+                        bgcolor: '#ffffff',
+                        color: '#000000',
+                    }
                 }}
             >
                 {drawer}
