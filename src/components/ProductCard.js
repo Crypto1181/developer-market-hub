@@ -93,7 +93,8 @@ const ProductCard = ({ product }) => {
             <Card
                 onClick={handleCardClick}
                 sx={{
-                    height: '100%',
+                    height: 550,
+                    minHeight: 550,
                     display: 'flex',
                     flexDirection: 'column',
                     maxWidth: 400,
@@ -289,8 +290,8 @@ const ProductCard = ({ product }) => {
                         />
                     )}
                 </Box>
-                <CardContent sx={{ p: 2, flex: 1, display: 'flex', flexDirection: 'column' }}>
-                    <Box sx={{ mb: 1 }}>
+                <CardContent sx={{ p: 2, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                    <Box>
                         <Typography
                             variant="h5"
                             sx={{
@@ -311,30 +312,37 @@ const ProductCard = ({ product }) => {
                                 fontSize: '1rem',
                                 color: '#000',
                                 mb: 0.5,
+                                height: 48,
+                                display: '-webkit-box',
+                                WebkitLineClamp: 2,
+                                WebkitBoxOrient: 'vertical',
+                                overflow: 'hidden',
                             }}
                         >
                             {product.title || 'Untitled Product'}
                         </Typography>
-                        {product.rating && product.rating > 0 && (
-                            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                                <Rating 
-                                    value={product.rating} 
-                                    precision={0.5} 
-                                    size="small" 
-                                    readOnly 
-                                    sx={{ mr: 1 }}
-                                />
-                                <Typography
-                                    variant="body2"
-                                    sx={{
-                                        color: 'rgba(0, 0, 0, 0.6)',
-                                        fontSize: '0.875rem',
-                                    }}
-                                >
-                                    ({product.rating})
-                                </Typography>
-                            </Box>
-                        )}
+                        <Box sx={{ height: 28, mb: 1 }}>
+                            {product.rating && product.rating > 0 && (
+                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                    <Rating 
+                                        value={product.rating} 
+                                        precision={0.5} 
+                                        size="small" 
+                                        readOnly 
+                                        sx={{ mr: 1 }}
+                                    />
+                                    <Typography
+                                        variant="body2"
+                                        sx={{
+                                            color: 'rgba(0, 0, 0, 0.6)',
+                                            fontSize: '0.875rem',
+                                        }}
+                                    >
+                                        ({product.rating})
+                                    </Typography>
+                                </Box>
+                            )}
+                        </Box>
                         <Typography
                             variant="body2"
                             sx={{
@@ -344,13 +352,15 @@ const ProductCard = ({ product }) => {
                                 WebkitLineClamp: 2,
                                 WebkitBoxOrient: 'vertical',
                                 overflow: 'hidden',
+                                height: 40,
+                                mb: 1,
                             }}
                         >
                             {product.subtitle || 'No description available'}
                         </Typography>
                     </Box>
 
-                    <Box sx={{ mt: 2 }}>
+                    <Box sx={{ mt: 'auto', pt: 2 }}>
                         <Chip
                             label={product.category || 'General'}
                             size="small"
