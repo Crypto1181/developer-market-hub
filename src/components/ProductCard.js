@@ -315,24 +315,26 @@ const ProductCard = ({ product }) => {
                         >
                             {product.title || 'Untitled Product'}
                         </Typography>
-                        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                            <Rating 
-                                value={product.rating || 0} 
-                                precision={0.5} 
-                                size="small" 
-                                readOnly 
-                                sx={{ mr: 1 }}
-                            />
-                            <Typography
-                                variant="body2"
-                                sx={{
-                                    color: 'rgba(0, 0, 0, 0.6)',
-                                    fontSize: '0.875rem',
-                                }}
-                            >
-                                ({product.rating || 0})
-                            </Typography>
-                        </Box>
+                        {product.rating && product.rating > 0 && (
+                            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                                <Rating 
+                                    value={product.rating} 
+                                    precision={0.5} 
+                                    size="small" 
+                                    readOnly 
+                                    sx={{ mr: 1 }}
+                                />
+                                <Typography
+                                    variant="body2"
+                                    sx={{
+                                        color: 'rgba(0, 0, 0, 0.6)',
+                                        fontSize: '0.875rem',
+                                    }}
+                                >
+                                    ({product.rating})
+                                </Typography>
+                            </Box>
+                        )}
                         <Typography
                             variant="body2"
                             sx={{

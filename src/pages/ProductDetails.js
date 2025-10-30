@@ -256,22 +256,24 @@ const ProductDetails = () => {
                             </Typography>
 
                                 {/* Rating */}
-                                <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
-                                    <Rating
-                                        value={productData.rating} 
-                                        precision={0.5} 
-                                        readOnly
-                                        sx={{ mr: 1 }}
-                                    />
-                                    <Typography variant="body2" sx={{ color: '#666' }}>
-                                        ({productData.rating})
-                                    </Typography>
-                                    {productData.comments?.length > 0 && (
-                                        <Typography variant="body2" sx={{ color: '#666', ml: 1 }}>
-                                            • {productData.comments.length} reviews
+                                {productData.rating && productData.rating > 0 && (
+                                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+                                        <Rating
+                                            value={productData.rating} 
+                                            precision={0.5} 
+                                            readOnly
+                                            sx={{ mr: 1 }}
+                                        />
+                                        <Typography variant="body2" sx={{ color: '#666' }}>
+                                            ({productData.rating})
                                         </Typography>
-                                    )}
-                                </Box>
+                                        {productData.comments?.length > 0 && (
+                                            <Typography variant="body2" sx={{ color: '#666', ml: 1 }}>
+                                                • {productData.comments.length} reviews
+                                            </Typography>
+                                        )}
+                                    </Box>
+                                )}
 
                                 <Divider sx={{ my: 3 }} />
 
