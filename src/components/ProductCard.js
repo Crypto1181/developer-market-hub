@@ -93,23 +93,27 @@ const ProductCard = ({ product }) => {
             <Card
                 onClick={handleCardClick}
                 sx={{
-                    height: 550,
-                    minHeight: 550,
+                    height: 420,
+                    minHeight: 420,
                     display: 'flex',
                     flexDirection: 'column',
-                    maxWidth: 400,
+                    maxWidth: 280,
                     width: '100%',
-                    borderRadius: 2,
+                    borderRadius: 1,
                     background: '#fff',
-                    boxShadow: isHovered ? '0 8px 24px rgba(0,0,0,0.15)' : '0 2px 8px rgba(0,0,0,0.08)',
-                    border: isHovered ? '1px solid rgba(33, 150, 243, 0.5)' : '1px solid rgba(0, 0, 0, 0.08)',
+                    boxShadow: isHovered ? '0 4px 12px rgba(0,0,0,0.12)' : '0 1px 3px rgba(0,0,0,0.08)',
+                    border: '1px solid rgba(0, 0, 0, 0.08)',
                     position: 'relative',
                     overflow: 'hidden',
                     transition: 'all 0.3s ease',
                     cursor: 'pointer',
+                    '&:hover': {
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                        transform: 'translateY(-2px)',
+                    }
                 }}
             >
-                <Box sx={{ position: 'relative', overflow: 'hidden', height: 220 }}>
+                <Box sx={{ position: 'relative', overflow: 'hidden', height: 280, bgcolor: '#f5f5f5' }}>
                     <Swiper
                         modules={[Navigation, Pagination]}
                         spaceBetween={0}
@@ -136,17 +140,31 @@ const ProductCard = ({ product }) => {
                                     alt={`${product.title} - Image ${index + 1}`}
                                     sx={{
                                         width: '100%',
-                                        height: 220,
+                                        height: 280,
                                         objectFit: 'cover',
                                         transition: 'transform 0.3s ease',
-                                        '&:hover': {
-                                            transform: 'scale(1.05)',
-                                        }
                                     }}
                                 />
                             </SwiperSlide>
                         ))}
                     </Swiper>
+                    
+                    {/* Category Badge */}
+                    <Chip
+                        label={product.category || 'General'}
+                        size="small"
+                        sx={{
+                            position: 'absolute',
+                            top: 8,
+                            left: 8,
+                            bgcolor: 'rgba(255, 255, 255, 0.95)',
+                            color: '#666',
+                            fontWeight: 600,
+                            fontSize: '0.7rem',
+                            height: 20,
+                            zIndex: 2,
+                        }}
+                    />
                     
                     {/* Custom Navigation Buttons */}
                     {productImages.length > 1 && (
@@ -290,127 +308,94 @@ const ProductCard = ({ product }) => {
                         />
                     )}
                 </Box>
-                <CardContent sx={{ p: 2, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                    <Box>
+                <CardContent sx={{ p: 1.5, flex: 1, display: 'flex', flexDirection: 'column' }}>
+                    {/* Title */}
+                    <Typography
+                        variant="body2"
+                        sx={{
+                            color: '#333',
+                            fontSize: '0.875rem',
+                            fontWeight: 400,
+                            mb: 0.5,
+                            height: 40,
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                            overflow: 'hidden',
+                            lineHeight: 1.4,
+                        }}
+                    >
+                        {product.title || 'Untitled Product'}
+                    </Typography>
+
+                    {/* Free Shipping Badge */}
+                    <Typography
+                        variant="caption"
+                        sx={{
+                            color: '#666',
+                            fontSize: '0.7rem',
+                            mb: 0.5,
+                        }}
+                    >
+                        Free shipping
+                    </Typography>
+
+                    {/* Rating */}
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                        {product.rating && product.rating > 0 && (
+                            <>
+                                <Rating 
+                                    value={product.rating} 
+                                    precision={0.1} 
+                                    size="small" 
+                                    readOnly 
+                                    sx={{ 
+                                        fontSize: '0.9rem',
+                                        '& .MuiRating-icon': {
+                                            fontSize: '0.9rem',
+                                        }
+                                    }}
+                                />
+                                <Typography
+                                    variant="caption"
+                                    sx={{
+                                        color: '#666',
+                                        fontSize: '0.7rem',
+                                    }}
+                                >
+                                    {product.rating}
+                                </Typography>
+                            </>
+                        )}
+                    </Box>
+
+                    {/* Price and Cart Button */}
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 'auto' }}>
                         <Typography
-                            variant="h5"
+                            variant="h6"
                             sx={{
-                                color: '#2196f3',
-                                fontSize: '1.25rem',
+                                color: '#ff5722',
+                                fontSize: '1.1rem',
                                 fontWeight: 700,
-                                mb: 1,
-                                display: 'block',
                             }}
                         >
                             ${product.price?.toFixed(2) || '0.00'}
                         </Typography>
-                        <Typography
-                            variant="h6"
-                            component="div"
-                            sx={{ 
-                                fontWeight: 600,
-                                fontSize: '1rem',
-                                color: '#000',
-                                mb: 0.5,
-                                height: 48,
-                                display: '-webkit-box',
-                                WebkitLineClamp: 2,
-                                WebkitBoxOrient: 'vertical',
-                                overflow: 'hidden',
-                            }}
-                        >
-                            {product.title || 'Untitled Product'}
-                        </Typography>
-                        <Box sx={{ height: 28, mb: 1 }}>
-                            {product.rating && product.rating > 0 && (
-                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                    <Rating 
-                                        value={product.rating} 
-                                        precision={0.5} 
-                                        size="small" 
-                                        readOnly 
-                                        sx={{ mr: 1 }}
-                                    />
-                                    <Typography
-                                        variant="body2"
-                                        sx={{
-                                            color: 'rgba(0, 0, 0, 0.6)',
-                                            fontSize: '0.875rem',
-                                        }}
-                                    >
-                                        ({product.rating})
-                                    </Typography>
-                                </Box>
-                            )}
-                        </Box>
-                        <Typography
-                            variant="body2"
-                            sx={{
-                                color: 'rgba(0, 0, 0, 0.6)',
-                                fontSize: '0.875rem',
-                                display: '-webkit-box',
-                                WebkitLineClamp: 2,
-                                WebkitBoxOrient: 'vertical',
-                                overflow: 'hidden',
-                                height: 40,
-                                mb: 1,
-                            }}
-                        >
-                            {product.subtitle || 'No description available'}
-                        </Typography>
-                    </Box>
-
-                    <Box sx={{ mt: 'auto', pt: 2 }}>
-                        <Chip
-                            label={product.category || 'General'}
+                        <IconButton
+                            onClick={handleAddToCart}
                             size="small"
                             sx={{
-                                bgcolor: 'rgba(33, 150, 243, 0.1)',
-                                color: '#2196f3',
-                                fontWeight: 600,
-                                fontSize: '0.75rem',
-                                border: '1px solid rgba(33, 150, 243, 0.2)',
-                                mb: 2,
-                            }}
-                        />
-                        <Box sx={{ display: 'flex', gap: 1 }}>
-                        <Button
-                            variant="contained"
-                                fullWidth
-                            onClick={handleBuy}
-                            sx={{
-                                    bgcolor: '#2196f3',
-                                    color: 'white',
-                                    fontWeight: 600,
-                                    fontSize: '0.875rem',
-                                    py: 1,
-                                    borderRadius: 1.5,
-                                textTransform: 'none',
-                                    boxShadow: 'none',
+                                bgcolor: '#2196f3',
+                                color: '#fff',
+                                width: 32,
+                                height: 32,
                                 '&:hover': {
-                                        bgcolor: '#1976d2',
-                                        boxShadow: '0 4px 12px rgba(33, 150, 243, 0.4)',
-                                    }
+                                    bgcolor: '#1976d2',
+                                }
                             }}
                         >
-                            Buy Now
-                        </Button>
-                            <IconButton
-                                sx={{
-                                    color: '#2196f3',
-                                    bgcolor: 'rgba(33, 150, 243, 0.1)',
-                                    borderRadius: 1.5,
-                                    px: 2,
-                                    '&:hover': {
-                                        bgcolor: '#2196f3',
-                                        color: 'white',
-                                    }
-                                }}
-                                onClick={handleAddToCart}
-                            >
-                                <ShoppingCart fontSize="small" />
-                            </IconButton>
-                        </Box>
+                            <ShoppingCart sx={{ fontSize: '1.1rem' }} />
+                        </IconButton>
                     </Box>
                 </CardContent>
             </Card>
