@@ -315,33 +315,39 @@ const ProductCard = ({ product }) => {
                         sx={{
                             color: '#333',
                             fontSize: '0.875rem',
-                            fontWeight: 400,
+                            fontWeight: 600,
                             mb: 0.5,
-                            height: 40,
+                            height: 36,
                             display: '-webkit-box',
                             WebkitLineClamp: 2,
                             WebkitBoxOrient: 'vertical',
                             overflow: 'hidden',
-                            lineHeight: 1.4,
+                            lineHeight: 1.3,
                         }}
                     >
                         {product.title || 'Untitled Product'}
                     </Typography>
 
-                    {/* Free Shipping Badge */}
+                    {/* Subtitle */}
                     <Typography
                         variant="caption"
                         sx={{
                             color: '#666',
-                            fontSize: '0.7rem',
+                            fontSize: '0.75rem',
                             mb: 0.5,
+                            height: 30,
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                            overflow: 'hidden',
+                            lineHeight: 1.3,
                         }}
                     >
-                        Free shipping
+                        {product.subtitle || 'No description'}
                     </Typography>
 
                     {/* Rating */}
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1, minHeight: 20 }}>
                         {product.rating && product.rating > 0 && (
                             <>
                                 <Rating 
@@ -369,32 +375,72 @@ const ProductCard = ({ product }) => {
                         )}
                     </Box>
 
-                    {/* Price and Cart Button */}
-                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 'auto' }}>
-                        <Typography
-                            variant="h6"
+                    {/* Price */}
+                    <Typography
+                        variant="h6"
+                        sx={{
+                            color: '#ff5722',
+                            fontSize: '1.1rem',
+                            fontWeight: 700,
+                            mb: 1,
+                        }}
+                    >
+                        ${product.price?.toFixed(2) || '0.00'}
+                    </Typography>
+
+                    {/* Category Chip */}
+                    <Chip
+                        label={product.category || 'General'}
+                        size="small"
+                        sx={{
+                            bgcolor: 'rgba(33, 150, 243, 0.1)',
+                            color: '#2196f3',
+                            fontWeight: 600,
+                            fontSize: '0.7rem',
+                            height: 22,
+                            mb: 1,
+                            alignSelf: 'flex-start',
+                        }}
+                    />
+
+                    {/* Buttons */}
+                    <Box sx={{ display: 'flex', gap: 1, mt: 'auto' }}>
+                        <Button
+                            variant="contained"
+                            fullWidth
+                            onClick={handleBuy}
                             sx={{
-                                color: '#ff5722',
-                                fontSize: '1.1rem',
-                                fontWeight: 700,
+                                bgcolor: '#2196f3',
+                                color: 'white',
+                                fontWeight: 600,
+                                fontSize: '0.75rem',
+                                py: 0.75,
+                                borderRadius: 1,
+                                textTransform: 'none',
+                                boxShadow: 'none',
+                                '&:hover': {
+                                    bgcolor: '#1976d2',
+                                    boxShadow: 'none',
+                                }
                             }}
                         >
-                            ${product.price?.toFixed(2) || '0.00'}
-                        </Typography>
+                            Buy Now
+                        </Button>
                         <IconButton
                             onClick={handleAddToCart}
                             size="small"
                             sx={{
-                                bgcolor: '#2196f3',
-                                color: '#fff',
+                                bgcolor: 'rgba(33, 150, 243, 0.1)',
+                                color: '#2196f3',
                                 width: 32,
                                 height: 32,
                                 '&:hover': {
-                                    bgcolor: '#1976d2',
+                                    bgcolor: '#2196f3',
+                                    color: '#fff',
                                 }
                             }}
                         >
-                            <ShoppingCart sx={{ fontSize: '1.1rem' }} />
+                            <ShoppingCart sx={{ fontSize: '1rem' }} />
                         </IconButton>
                     </Box>
                 </CardContent>
