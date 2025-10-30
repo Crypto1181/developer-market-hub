@@ -282,6 +282,9 @@ const Payment = () => {
                                 <Tabs 
                                     value={activeTab} 
                                     onChange={handleTabChange}
+                                    variant="scrollable"
+                                    scrollButtons="auto"
+                                    allowScrollButtonsMobile
                                     sx={{
                                         borderBottom: '2px solid rgba(0, 0, 0, 0.1)',
                                         mb: 4,
@@ -289,6 +292,11 @@ const Payment = () => {
                                             textTransform: 'none',
                                             fontSize: '1rem',
                                             fontWeight: 600,
+                                            minWidth: 'auto',
+                                            px: 3,
+                                        },
+                                        '& .MuiTabs-scrollButtons': {
+                                            color: '#000',
                                         },
                                     }}
                                 >
