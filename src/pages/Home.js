@@ -39,7 +39,7 @@ const Home = () => {
                     title: item.Ttile || item.Title || item.title || 'Untitled Product',
                     subtitle: item.Subtitle || item.subtitle || 'No description',
                     price: item.Price || item.price || 0,
-                    rating: item.Rating || item.rating || 4.5,
+                    rating: item.Rating || item.rating || null,
                     category: item.Category || item.category || 'General',
                     image: item.Product_image || item.image,
                     description: item.Description || item.description || 'No description available',

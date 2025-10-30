@@ -93,7 +93,7 @@ const ProductDetails = () => {
         title: product.Ttile || product.Title || product.title || 'Untitled Product',
         subtitle: product.Subtitle || product.subtitle || 'No subtitle',
         price: product.Price || product.price || 0,
-        rating: product.Rating || product.rating || 4.5,
+        rating: product.Rating || product.rating || null,
         description: product.Description || product.description || 'No description available',
         image: product.Product_image || product.image,
         comments: product.Product_comment || [],
