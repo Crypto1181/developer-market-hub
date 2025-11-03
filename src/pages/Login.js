@@ -337,9 +337,10 @@ const Login = () => {
                                         sx={{ 
                                             fontSize: '0.875rem',
                                             fontWeight: 500,
-                                            color: '#667eea',
+                                            color: '#6366f1',
+                                            transition: 'all 0.2s ease',
                                             '&:hover': {
-                                                color: '#5568d3',
+                                                color: '#4f46e5',
                                                 textDecoration: 'underline',
                                             },
                                         }}
