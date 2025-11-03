@@ -99,17 +99,20 @@ const ProductCard = ({ product }) => {
                     flexDirection: 'column',
                     maxWidth: 280,
                     width: '100%',
-                    borderRadius: 1,
+                    borderRadius: 2,
                     background: '#fff',
-                    boxShadow: isHovered ? '0 4px 12px rgba(0,0,0,0.12)' : '0 1px 3px rgba(0,0,0,0.08)',
-                    border: '1px solid rgba(0, 0, 0, 0.08)',
+                    boxShadow: isHovered 
+                        ? '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' 
+                        : '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+                    border: '1px solid rgba(0, 0, 0, 0.06)',
                     position: 'relative',
                     overflow: 'hidden',
-                    transition: 'all 0.3s ease',
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                     cursor: 'pointer',
                     '&:hover': {
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                        transform: 'translateY(-2px)',
+                        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                        transform: 'translateY(-4px)',
+                        borderColor: 'rgba(99, 102, 241, 0.2)',
                     }
                 }}
             >
@@ -393,13 +396,14 @@ const ProductCard = ({ product }) => {
                         label={product.category || 'General'}
                         size="small"
                         sx={{
-                            bgcolor: 'rgba(33, 150, 243, 0.1)',
-                            color: '#2196f3',
+                            bgcolor: 'rgba(99, 102, 241, 0.1)',
+                            color: '#6366f1',
                             fontWeight: 600,
                             fontSize: '0.7rem',
-                            height: 22,
+                            height: 24,
                             mb: 1,
                             alignSelf: 'flex-start',
+                            border: '1px solid rgba(99, 102, 241, 0.2)',
                         }}
                     />
 
@@ -410,17 +414,19 @@ const ProductCard = ({ product }) => {
                             fullWidth
                             onClick={handleBuy}
                             sx={{
-                                bgcolor: '#2196f3',
+                                background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
                                 color: 'white',
                                 fontWeight: 600,
-                                fontSize: '0.75rem',
-                                py: 0.75,
-                                borderRadius: 1,
+                                fontSize: '0.8125rem',
+                                py: 0.875,
+                                borderRadius: 2,
                                 textTransform: 'none',
-                                boxShadow: 'none',
+                                boxShadow: '0 4px 6px -1px rgba(99, 102, 241, 0.3), 0 2px 4px -1px rgba(99, 102, 241, 0.2)',
+                                transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                                 '&:hover': {
-                                    bgcolor: '#1976d2',
-                                    boxShadow: 'none',
+                                    background: 'linear-gradient(135deg, #4f46e5 0%, #db2777 100%)',
+                                    boxShadow: '0 10px 15px -3px rgba(99, 102, 241, 0.4), 0 4px 6px -2px rgba(99, 102, 241, 0.3)',
+                                    transform: 'translateY(-1px)',
                                 }
                             }}
                         >
@@ -430,17 +436,20 @@ const ProductCard = ({ product }) => {
                             onClick={handleAddToCart}
                             size="small"
                             sx={{
-                                bgcolor: 'rgba(33, 150, 243, 0.1)',
-                                color: '#2196f3',
-                                width: 32,
-                                height: 32,
+                                bgcolor: 'rgba(99, 102, 241, 0.1)',
+                                color: '#6366f1',
+                                width: 36,
+                                height: 36,
+                                transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                                 '&:hover': {
-                                    bgcolor: '#2196f3',
+                                    bgcolor: '#6366f1',
                                     color: '#fff',
+                                    transform: 'scale(1.05)',
+                                    boxShadow: '0 4px 6px -1px rgba(99, 102, 241, 0.3), 0 2px 4px -1px rgba(99, 102, 241, 0.2)',
                                 }
                             }}
                         >
-                            <ShoppingCart sx={{ fontSize: '1rem' }} />
+                            <ShoppingCart sx={{ fontSize: '1.1rem' }} />
                         </IconButton>
                     </Box>
                 </CardContent>

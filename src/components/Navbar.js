@@ -73,7 +73,7 @@ const Navbar = () => {
                     variant="h6"
                     sx={{
                         fontWeight: 800,
-                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
                     }}
@@ -106,7 +106,12 @@ const Navbar = () => {
                     <>
                         <ListItem>
                             <ListItemIcon>
-                                <Avatar sx={{ width: 32, height: 32, bgcolor: '#667eea' }}>
+                                <Avatar sx={{ 
+                                    width: 32, 
+                                    height: 32, 
+                                    background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
+                                    fontWeight: 600,
+                                }}>
                                     {user?.username?.charAt(0)?.toUpperCase() || 
                                      user?.email?.charAt(0)?.toUpperCase()}
                                 </Avatar>
@@ -154,7 +159,7 @@ const Navbar = () => {
             {/* Top accent bar */}
             <Box sx={{ 
                 height: 4, 
-                background: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
+                background: 'linear-gradient(90deg, #6366f1 0%, #ec4899 100%)',
             }} />
 
             <AppBar 
@@ -184,12 +189,16 @@ const Navbar = () => {
                         to="/"
                         sx={{
                                     fontWeight: 800,
-                                    fontSize: { xs: '1.2rem', md: '1.5rem' },
+                                    fontSize: { xs: '1.25rem', md: '1.625rem' },
                             textDecoration: 'none',
-                                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                                    background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
                                     letterSpacing: '-0.5px',
+                                    transition: 'all 0.2s ease',
+                                    '&:hover': {
+                                        transform: 'scale(1.02)',
+                                    }
                                 }}
                             >
                                 DevMarket
@@ -203,13 +212,16 @@ const Navbar = () => {
                                     component={Link}
                                     to="/"
                                     sx={{
-                                        color: '#000',
+                                        color: '#111827',
                                         textTransform: 'none',
-                                        fontSize: '0.95rem',
+                                        fontSize: '0.9375rem',
                                         fontWeight: 500,
                                         px: 2,
+                                        borderRadius: 2,
+                                        transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                                         '&:hover': {
-                                            bgcolor: 'rgba(102, 126, 234, 0.08)',
+                                            bgcolor: 'rgba(99, 102, 241, 0.08)',
+                                            transform: 'translateY(-1px)',
                                         },
                                     }}
                                 >
@@ -219,13 +231,16 @@ const Navbar = () => {
                                     component={Link}
                                     to="/source-code"
                                     sx={{
-                                        color: '#000',
+                                        color: '#111827',
                                         textTransform: 'none',
-                                        fontSize: '0.95rem',
+                                        fontSize: '0.9375rem',
                                         fontWeight: 500,
                                         px: 2,
+                                        borderRadius: 2,
+                                        transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                                         '&:hover': {
-                                            bgcolor: 'rgba(102, 126, 234, 0.08)',
+                                            bgcolor: 'rgba(99, 102, 241, 0.08)',
+                                            transform: 'translateY(-1px)',
                                         },
                                     }}
                                 >
@@ -235,13 +250,16 @@ const Navbar = () => {
                                 component={Link}
                                     to="/portfolio"
                                     sx={{
-                                        color: '#000',
+                                        color: '#111827',
                                         textTransform: 'none',
-                                        fontSize: '0.95rem',
+                                        fontSize: '0.9375rem',
                                         fontWeight: 500,
                                         px: 2,
+                                        borderRadius: 2,
+                                        transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                                         '&:hover': {
-                                            bgcolor: 'rgba(102, 126, 234, 0.08)',
+                                            bgcolor: 'rgba(99, 102, 241, 0.08)',
+                                            transform: 'translateY(-1px)',
                                         },
                                     }}
                                 >
@@ -251,13 +269,16 @@ const Navbar = () => {
                                     component={Link}
                                     to="/contact"
                                     sx={{
-                                        color: '#000',
+                                        color: '#111827',
                                         textTransform: 'none',
-                                        fontSize: '0.95rem',
+                                        fontSize: '0.9375rem',
                                         fontWeight: 500,
                                         px: 2,
+                                        borderRadius: 2,
+                                        transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                                         '&:hover': {
-                                            bgcolor: 'rgba(102, 126, 234, 0.08)',
+                                            bgcolor: 'rgba(99, 102, 241, 0.08)',
+                                            transform: 'translateY(-1px)',
                                         },
                                     }}
                                 >
@@ -271,9 +292,12 @@ const Navbar = () => {
                             {/* Search Icon */}
                             <IconButton
                                 sx={{
-                                    color: '#000',
+                                    color: '#111827',
+                                    borderRadius: 2,
+                                    transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                                     '&:hover': {
-                                        bgcolor: 'rgba(102, 126, 234, 0.08)',
+                                        bgcolor: 'rgba(99, 102, 241, 0.08)',
+                                        transform: 'scale(1.05)',
                                     },
                                 }}
                             >
@@ -297,7 +321,8 @@ const Navbar = () => {
                                         color="error"
                                         sx={{
                                             '& .MuiBadge-badge': {
-                                                bgcolor: '#667eea',
+                                                bgcolor: '#6366f1',
+                                                boxShadow: '0 4px 6px -1px rgba(99, 102, 241, 0.3)',
                                             }
                                         }}
                                     >
@@ -314,9 +339,12 @@ const Navbar = () => {
                                             <IconButton
                                                 onClick={handleUserMenuOpen}
                                                 sx={{
-                                                    color: '#000',
+                                                    color: '#111827',
+                                                    borderRadius: 2,
+                                                    transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                                                     '&:hover': {
-                                                        bgcolor: 'rgba(102, 126, 234, 0.08)',
+                                                        bgcolor: 'rgba(99, 102, 241, 0.08)',
+                                                        transform: 'scale(1.05)',
                                                     },
                                                 }}
                                             >
@@ -324,8 +352,10 @@ const Navbar = () => {
                                                     sx={{ 
                                                         width: 32, 
                                                         height: 32,
-                                                        bgcolor: '#667eea',
+                                                        background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
                                                         fontSize: '0.9rem',
+                                                        fontWeight: 600,
+                                                        boxShadow: '0 4px 6px -1px rgba(99, 102, 241, 0.3)',
                                                     }}
                                                 >
                                                     {user?.username?.charAt(0)?.toUpperCase() || 
@@ -343,7 +373,8 @@ const Navbar = () => {
                                                         mt: 1.5,
                                                         minWidth: 200,
                                                         borderRadius: 2,
-                                                        boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+                                                        boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                                                        border: '1px solid rgba(0, 0, 0, 0.05)',
                                                     }
                                                 }}
                                             >
@@ -380,13 +411,17 @@ const Navbar = () => {
                                                 size="small"
                                                 sx={{
                                                     textTransform: 'none',
-                                                    borderColor: '#667eea',
-                                                    color: '#667eea',
+                                                    borderColor: '#6366f1',
+                                                    color: '#6366f1',
                                                     fontWeight: 600,
                                                     borderRadius: 2,
+                                                    px: 2.5,
+                                                    transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                                                     '&:hover': {
-                                                        borderColor: '#667eea',
-                                                        bgcolor: 'rgba(102, 126, 234, 0.08)',
+                                                        borderColor: '#6366f1',
+                                                        bgcolor: 'rgba(99, 102, 241, 0.08)',
+                                                        transform: 'translateY(-1px)',
+                                                        boxShadow: '0 4px 6px -1px rgba(99, 102, 241, 0.2)',
                                                     },
                                                 }}
                                             >
@@ -399,13 +434,16 @@ const Navbar = () => {
                                                 size="small"
                                                 sx={{
                                                     textTransform: 'none',
-                                                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                                                    background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
                                                     fontWeight: 600,
                                                     borderRadius: 2,
-                                                    boxShadow: 'none',
+                                                    px: 2.5,
+                                                    boxShadow: '0 4px 6px -1px rgba(99, 102, 241, 0.3), 0 2px 4px -1px rgba(99, 102, 241, 0.2)',
+                                                    transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                                                     '&:hover': {
-                                                        background: 'linear-gradient(135deg, #5568d3 0%, #6a3f8e 100%)',
-                                                        boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
+                                                        background: 'linear-gradient(135deg, #4f46e5 0%, #db2777 100%)',
+                                                        boxShadow: '0 10px 15px -3px rgba(99, 102, 241, 0.4), 0 4px 6px -2px rgba(99, 102, 241, 0.3)',
+                                                        transform: 'translateY(-1px)',
                                                     },
                                                 }}
                                             >

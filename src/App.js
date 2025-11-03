@@ -16,49 +16,49 @@ import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import './App.css';
 
-// Create a modern theme instance with enhanced colors
+// Create a modern 2024-2025 theme with contemporary design
 const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#2196f3',
-      light: '#64b5f6',
-      dark: '#1976d2',
+      main: '#6366f1', // Modern indigo
+      light: '#818cf8',
+      dark: '#4f46e5',
       contrastText: '#fff',
     },
     secondary: {
-      main: '#ff4081',
-      light: '#ff79b0',
-      dark: '#c60055',
+      main: '#ec4899', // Modern pink
+      light: '#f472b6',
+      dark: '#db2777',
       contrastText: '#fff',
     },
     success: {
-      main: '#4caf50',
-      light: '#81c784',
-      dark: '#388e3c',
+      main: '#10b981',
+      light: '#34d399',
+      dark: '#059669',
     },
     error: {
-      main: '#f44336',
-      light: '#e57373',
-      dark: '#d32f2f',
+      main: '#ef4444',
+      light: '#f87171',
+      dark: '#dc2626',
     },
     warning: {
-      main: '#ff9800',
-      light: '#ffb74d',
-      dark: '#f57c00',
+      main: '#f59e0b',
+      light: '#fbbf24',
+      dark: '#d97706',
     },
     info: {
-      main: '#2196f3',
-      light: '#64b5f6',
-      dark: '#1976d2',
+      main: '#3b82f6',
+      light: '#60a5fa',
+      dark: '#2563eb',
     },
     background: {
-      default: '#f5f5f5',
+      default: '#fafafa',
       paper: '#ffffff',
     },
     text: {
-      primary: '#1a1a1a',
-      secondary: '#666666',
+      primary: '#111827',
+      secondary: '#6b7280',
     },
   },
   typography: {
@@ -116,48 +116,51 @@ const theme = createTheme({
   },
   shadows: [
     'none',
-    '0px 2px 4px rgba(0,0,0,0.05)',
-    '0px 4px 8px rgba(0,0,0,0.08)',
-    '0px 8px 16px rgba(0,0,0,0.1)',
-    '0px 12px 24px rgba(0,0,0,0.12)',
-    '0px 16px 32px rgba(0,0,0,0.15)',
-    '0px 20px 40px rgba(0,0,0,0.18)',
-    '0px 24px 48px rgba(0,0,0,0.2)',
-    '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
-    '0 10px 40px 0 rgba(31, 38, 135, 0.4)',
-    '0 12px 48px 0 rgba(31, 38, 135, 0.45)',
-    '0 14px 56px 0 rgba(31, 38, 135, 0.5)',
-    '0 16px 64px 0 rgba(31, 38, 135, 0.55)',
-    '0 18px 72px 0 rgba(31, 38, 135, 0.6)',
-    '0 20px 80px 0 rgba(31, 38, 135, 0.65)',
-    '0 22px 88px 0 rgba(31, 38, 135, 0.7)',
-    '0 24px 96px 0 rgba(31, 38, 135, 0.75)',
-    '0 26px 104px 0 rgba(31, 38, 135, 0.8)',
-    '0 28px 112px 0 rgba(31, 38, 135, 0.85)',
-    '0 30px 120px 0 rgba(31, 38, 135, 0.9)',
-    '0 32px 128px 0 rgba(31, 38, 135, 0.95)',
-    '0 34px 136px 0 rgba(31, 38, 135, 1)',
-    '0 36px 144px 0 rgba(31, 38, 135, 1)',
-    '0 38px 152px 0 rgba(31, 38, 135, 1)',
-    '0 40px 160px 0 rgba(31, 38, 135, 1)',
+    '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+    '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+    '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+    '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+    '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+    '0px 30px 60px rgba(0,0,0,0.12)',
+    '0px 40px 80px rgba(0,0,0,0.15)',
+    '0px 50px 100px rgba(0,0,0,0.18)',
+    '0px 60px 120px rgba(0,0,0,0.2)',
+    '0px 70px 140px rgba(0,0,0,0.22)',
+    '0px 80px 160px rgba(0,0,0,0.25)',
+    '0px 90px 180px rgba(0,0,0,0.27)',
+    '0px 100px 200px rgba(0,0,0,0.3)',
+    '0px 110px 220px rgba(0,0,0,0.32)',
+    '0px 120px 240px rgba(0,0,0,0.35)',
+    '0px 130px 260px rgba(0,0,0,0.37)',
+    '0px 140px 280px rgba(0,0,0,0.4)',
+    '0px 150px 300px rgba(0,0,0,0.42)',
+    '0px 160px 320px rgba(0,0,0,0.45)',
+    '0px 170px 340px rgba(0,0,0,0.47)',
+    '0px 180px 360px rgba(0,0,0,0.5)',
+    '0px 190px 380px rgba(0,0,0,0.52)',
+    '0px 200px 400px rgba(0,0,0,0.55)',
   ],
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 12,
+          borderRadius: 10,
           padding: '10px 24px',
           fontWeight: 600,
-          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          fontSize: '0.9375rem',
+          letterSpacing: '0.01em',
+          transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+          textTransform: 'none',
           '&:hover': {
-            transform: 'translateY(-2px)',
-            boxShadow: '0 8px 16px rgba(0,0,0,0.15)',
+            transform: 'translateY(-1px)',
+            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
           },
         },
         contained: {
-          boxShadow: '0 4px 12px rgba(33, 150, 243, 0.3)',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
           '&:hover': {
-            boxShadow: '0 8px 20px rgba(33, 150, 243, 0.4)',
+            boxShadow: '0 10px 15px -3px rgba(99, 102, 241, 0.3), 0 4px 6px -2px rgba(99, 102, 241, 0.2)',
           },
         },
       },
@@ -165,8 +168,9 @@ const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          borderRadius: 16,
+          borderRadius: 12,
           transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          border: '1px solid rgba(0, 0, 0, 0.05)',
         },
       },
     },
@@ -193,13 +197,13 @@ const theme = createTheme({
           backgroundImage: 'none',
         },
         elevation1: {
-          boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+          boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
         },
         elevation2: {
-          boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
         },
         elevation3: {
-          boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
+          boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
         },
       },
     },

@@ -78,12 +78,14 @@ const Home = () => {
                     <Typography
                         variant="h3"
                         sx={{
-                                fontWeight: 900,
+                                fontWeight: 800,
                                 mb: 2,
-                                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                                background: 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)',
                             WebkitBackgroundClip: 'text',
                                 WebkitTextFillColor: 'transparent',
-                                fontSize: { xs: '2rem', md: '3rem' },
+                                fontSize: { xs: '2.5rem', md: '3.5rem' },
+                                letterSpacing: '-0.03em',
+                                lineHeight: 1.1,
                         }}
                     >
                             Discover Premium Digital Products
@@ -110,7 +112,7 @@ const Home = () => {
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">
-                                            <Search sx={{ color: '#666' }} />
+                                            <Search sx={{ color: '#6366f1' }} />
                                     </InputAdornment>
                                 ),
                             }}
@@ -119,18 +121,30 @@ const Home = () => {
                                         bgcolor: '#fff',
                                         borderRadius: 3,
                                         fontSize: '1rem',
+                                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                                        transition: 'all 0.3s ease',
                                         '& input': {
-                                            color: '#000',
+                                            color: '#111827',
+                                            fontWeight: 500,
                                         },
                                         '& fieldset': {
-                                            borderColor: 'rgba(0, 0, 0, 0.1)',
-                                            borderWidth: 2,
+                                            borderColor: 'rgba(0, 0, 0, 0.08)',
+                                            borderWidth: 1.5,
                                         },
-                                        '&:hover fieldset': {
-                                            borderColor: '#667eea',
+                                        '&:hover': {
+                                            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                                            transform: 'translateY(-1px)',
+                                            '& fieldset': {
+                                                borderColor: '#6366f1',
+                                            },
                                         },
-                                        '&.Mui-focused fieldset': {
-                                            borderColor: '#667eea',
+                                        '&.Mui-focused': {
+                                            boxShadow: '0 10px 15px -3px rgba(99, 102, 241, 0.2), 0 4px 6px -2px rgba(99, 102, 241, 0.1)',
+                                            transform: 'translateY(-1px)',
+                                            '& fieldset': {
+                                                borderColor: '#6366f1',
+                                                borderWidth: 2,
+                                            },
                                         },
                                     },
                                 }}
@@ -146,7 +160,7 @@ const Home = () => {
                     transition={{ duration: 0.6, delay: 0.2 }}
                 >
                     <Box sx={{ mb: 4, display: 'flex', alignItems: 'center', gap: 2, overflowX: 'auto', pb: 2 }}>
-                        <TrendingUp sx={{ color: '#667eea', flexShrink: 0 }} />
+                        <TrendingUp sx={{ color: '#6366f1', flexShrink: 0, fontSize: '1.5rem' }} />
                         {categories.map((category) => (
                     <Chip
                                 key={category}
@@ -155,26 +169,28 @@ const Home = () => {
                                 sx={{
                                     fontWeight: 600,
                                     fontSize: '0.9rem',
-                                    px: 1,
+                                    px: 2,
+                                    py: 0.5,
+                                    height: 36,
                                     bgcolor: selectedCategory === category 
-                                        ? '#667eea' 
+                                        ? 'linear-gradient(135deg, #6366f1 0%, #ec4899 100%)' 
                                         : '#fff',
                                     color: selectedCategory === category 
                                         ? '#fff' 
-                                        : '#000',
+                                        : '#111827',
                                     border: selectedCategory === category 
                                         ? 'none' 
-                                        : '2px solid rgba(0, 0, 0, 0.1)',
+                                        : '1.5px solid rgba(0, 0, 0, 0.1)',
                                     cursor: 'pointer',
-                                    transition: 'all 0.3s ease',
+                                    transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                                    boxShadow: selectedCategory === category 
+                                        ? '0 4px 6px -1px rgba(99, 102, 241, 0.3), 0 2px 4px -1px rgba(99, 102, 241, 0.2)' 
+                                        : '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
                                     '&:hover': {
-                                        bgcolor: selectedCategory === category 
-                                            ? '#5568d3' 
-                                            : 'rgba(102, 126, 234, 0.08)',
                                         transform: 'translateY(-2px)',
                                         boxShadow: selectedCategory === category 
-                                            ? '0 4px 12px rgba(102, 126, 234, 0.3)' 
-                                            : '0 2px 8px rgba(0, 0, 0, 0.1)',
+                                            ? '0 10px 15px -3px rgba(99, 102, 241, 0.4), 0 4px 6px -2px rgba(99, 102, 241, 0.3)' 
+                                            : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
                                     },
                                 }}
                             />
@@ -235,7 +251,7 @@ const Home = () => {
                                             transition={{ duration: 0.3, delay: index * 0.05 }}
                                             style={{ width: '100%', display: 'flex' }}
                                         >
-                                            <ProductCard product={product} />
+                            <ProductCard product={product} />
                                         </motion.div>
                                     </Grid>
                                 ))}
@@ -277,3 +293,4 @@ const Home = () => {
 };
 
 export default Home;
+
