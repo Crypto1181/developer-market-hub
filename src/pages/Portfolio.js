@@ -20,7 +20,7 @@ import {
     Web,
     PhoneAndroid,
     Cloud,
-    Database,
+    Storage,
     Security,
     ArrowForward,
     CheckCircle,
@@ -34,7 +34,7 @@ const Portfolio = () => {
         { name: 'Backend Development', icon: <Code />, color: '#ec4899' },
         { name: 'Mobile Development', icon: <PhoneAndroid />, color: '#10b981' },
         { name: 'Cloud Services', icon: <Cloud />, color: '#3b82f6' },
-        { name: 'Database Design', icon: <Database />, color: '#f59e0b' },
+        { name: 'Database Design', icon: <Storage />, color: '#f59e0b' },
         { name: 'Security', icon: <Security />, color: '#ef4444' },
     ];
 
