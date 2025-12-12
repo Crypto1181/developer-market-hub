@@ -18,7 +18,7 @@ import { motion } from 'framer-motion';
 import {
     Code,
     Web,
-    Mobile,
+    PhoneAndroid,
     Cloud,
     Database,
     Security,
@@ -32,7 +32,7 @@ const Portfolio = () => {
     const skills = [
         { name: 'Frontend Development', icon: <Web />, color: '#6366f1' },
         { name: 'Backend Development', icon: <Code />, color: '#ec4899' },
-        { name: 'Mobile Development', icon: <Mobile />, color: '#10b981' },
+        { name: 'Mobile Development', icon: <PhoneAndroid />, color: '#10b981' },
         { name: 'Cloud Services', icon: <Cloud />, color: '#3b82f6' },
         { name: 'Database Design', icon: <Database />, color: '#f59e0b' },
         { name: 'Security', icon: <Security />, color: '#ef4444' },
