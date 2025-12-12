@@ -39,8 +39,8 @@ const Login = () => {
 
         try {
             await login(formData.email, formData.password);
-            // Redirect to home page after successful login
-            navigate('/');
+            // Redirect to portfolio page after successful login
+            navigate('/portfolio');
         } catch (err) {
             console.error('Login error details:', err);
             const errorMessage = err.response?.data?.error?.message 

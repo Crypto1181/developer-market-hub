@@ -11,6 +11,7 @@ import Cart from './pages/Cart';
 import Payment from './pages/Payment';
 import Contact from './pages/Contact';
 import ComingSoon from './pages/ComingSoon';
+import Portfolio from './pages/Portfolio';
 import ProtectedRoute from './components/ProtectedRoute';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
@@ -275,10 +276,9 @@ function App() {
                 <Route 
                   path="/portfolio" 
                   element={
-                    <ComingSoon 
-                      title="Portfolio" 
-                      subtitle="Explore our collection of amazing projects"
-                    />
+                    <ProtectedRoute>
+                      <Portfolio />
+                    </ProtectedRoute>
                   } 
                 />
               </Routes>

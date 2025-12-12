@@ -56,8 +56,8 @@ const SignUp = () => {
             // Extract username from email (before @)
             const username = formData.email.split('@')[0];
             await register(formData.email, formData.password, username);
-            // Redirect to home page after successful registration
-            navigate('/');
+            // Redirect to portfolio page after successful registration
+            navigate('/portfolio');
         } catch (err) {
             console.error('Signup error details:', err);
             const errorMessage = err.response?.data?.error?.message 
